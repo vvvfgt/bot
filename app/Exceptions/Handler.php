@@ -41,6 +41,24 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
+
+    public function report(Throwable $e)
+    {
+        $data = [
+            'description' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ];
+        $message = $e->getMessage();
+        \Illuminate\Support\Facades\Http::post(
+            'https://api.telegram.org/bot' . \App\Service\TelegramService::botToken() . '/sendMessage', [
+                'chat_id' => \App\Service\TelegramService::chatId(),
+                'text' => (string)view('report', $data),
+                'parse_mode' => 'html'
+            ]
+        );
+    }
+
     public function register()
     {
         $this->reportable(function (Throwable $e) {
