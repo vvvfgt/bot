@@ -2,11 +2,16 @@
 
 namespace App\Exceptions;
 
+use App\Service\Telegram;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    public function  __construct(
+       private Telegram $telegram
+    ) {}
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -49,14 +54,8 @@ class Handler extends ExceptionHandler
             'file' => $e->getFile(),
             'line' => $e->getLine()
         ];
-        $message = $e->getMessage();
-        \Illuminate\Support\Facades\Http::post(
-            'https://api.telegram.org/bot' . \App\Service\TelegramService::botToken() . '/sendMessage', [
-                'chat_id' => \App\Service\TelegramService::chatId(),
-                'text' => (string)view('report', $data),
-                'parse_mode' => 'html'
-            ]
-        );
+
+        $this->telegram->sendMessage(\App\Service\TelegramService::chatId(), (string)view('report', $data));
     }
 
     public function register()

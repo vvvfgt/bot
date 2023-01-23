@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    \Illuminate\Support\Facades\Http::post(
-        'https://api.telegram.org/bot' . \App\Service\TelegramService::botToken() . '/sendMessage', [
-            'chat_id' => \App\Service\TelegramService::chatId(),
-            'text' => '<b>Hello bot</b>',
-            'parse_mode' => 'html'
-        ]
-    );
+Route::get('/', function (\App\Service\Telegram $telegram) {
+    $http = $telegram->sendDocument(\App\Service\TelegramService::chatId(), 'test.txt');
 });
