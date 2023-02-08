@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (\App\Service\Telegram $telegram) {
-    $http = $telegram->sendDocument(\App\Service\TelegramService::chatId(), 'test.txt');
+   return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);
+});
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::post('/order/store', 'OrderController@store')->name('order.store');
 });
