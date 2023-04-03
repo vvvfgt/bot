@@ -9,13 +9,10 @@ use App\Service\TelegramService;
 
 class TelegramSubscriber
 {
-
-    protected Telegram $telegram;
-
-    public function __construct(Telegram $telegram)
-    {
-        $this->telegram = $telegram;
-    }
+    public function __construct(
+        protected Telegram $telegram
+    )
+    {}
 
     public function orderStore($event)
     {

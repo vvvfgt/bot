@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (\App\Service\Telegram $telegram) {
+Route::get('/', \App\Http\Controllers\Admin\MainController::class)->name('shop.main');
+
+Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+
+Route::get('/order', function (\App\Service\Telegram $telegram) {
    return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);
 });
 

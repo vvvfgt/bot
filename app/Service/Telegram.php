@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,7 @@ class Telegram
     public function sendMessage(int $chatId, string $message)
     {
         return $this->http::post(
-            self::URL . \App\Service\TelegramService::botToken() . '/sendMessage', [
+            self::URL . TelegramService::botToken() . '/sendMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
                 'parse_mode' => 'html'
@@ -27,7 +28,7 @@ class Telegram
     public function editMessage(int $chatId, string $message, int $message_id)
     {
         return $this->http::post(
-            self::URL . \App\Service\TelegramService::botToken() . '/editMessage', [
+            self::URL . TelegramService::botToken() . '/editMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
                 'parse_mode' => 'html',
@@ -40,7 +41,7 @@ class Telegram
     {
          return $this->http::attach('document', Storage::disk('public')->get($file), 'text.txt')
             ->post(
-                self::URL . \App\Service\TelegramService::botToken() . '/sendDocument', [
+                self::URL . TelegramService::botToken() . '/sendDocument', [
                     'chat_id' => $chatId,
                     'replay_to_message_id' => $reply_id
            ]);
@@ -49,7 +50,7 @@ class Telegram
     public function sendButtons(int $chatId, string $message, $button)
     {
         return $this->http::post(
-            self::URL . \App\Service\TelegramService::botToken() . '/sendMessage', [
+            self::URL . TelegramService::botToken() . '/sendMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
                 'parse_mode' => 'html',
@@ -61,7 +62,7 @@ class Telegram
     public function editButtons(int $chatId, string $message, $button, int $messageId)
     {
         return $this->http::post(
-            self::URL . \App\Service\TelegramService::botToken() . '/editMessageText', [
+            self::URL . TelegramService::botToken() . '/editMessageText', [
                 'chat_id' => $chatId,
                 'text' => $message,
                 'parse_mode' => 'html',
@@ -69,5 +70,15 @@ class Telegram
                 'message_id' => $messageId
             ]
         );
+    }
+
+    public function confirmOrder(Order $order)
+    {
+        $data = [
+            'id' => $order->id,
+            'name' => $order->name,
+            'email' => $order->email,
+            'product' => $order->product,
+        ];
     }
 }
