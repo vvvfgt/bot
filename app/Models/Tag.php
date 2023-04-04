@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
-*/
+ */
 
-class Category extends Model
+class Tag extends Model
 {
     use HasFactory;
 
