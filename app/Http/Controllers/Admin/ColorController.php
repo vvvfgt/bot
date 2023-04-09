@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Color\StoreRequest;
 use App\Http\Requests\Admin\Color\UpdateRequest;
-use App\Models\Color;
+use App\Models\Admin\Color;
 
 class ColorController extends Controller
 {

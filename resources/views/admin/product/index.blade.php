@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Color</h1>
+                    <h1 class="m-0">Product</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -21,28 +21,24 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header d-flex p-3">
-                            <div class="mr-3">
-                               <a href="{{ route('color.edit', $color->id) }}" class="btn btn-primary">Edit</a>
-                            </div>
-                            <form action="{{ route('color.destroy', $color->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </form>
+                        <div class="card-header">
+                            <a href="{{ route('product.create') }}" class="btn btn-primary">Add</a>
                         </div>
-
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>{{ $color->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>{{ $color->title }}</td>
-                                    </tr>
+                                @foreach($products as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td><a href="{{ route('product.show', $product->id) }}">{{ $product->title }}</a></td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

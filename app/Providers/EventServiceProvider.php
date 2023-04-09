@@ -3,10 +3,17 @@
 namespace App\Providers;
 
 use App\Listeners\TelegramSubscriber;
+use App\Models\Admin\Category;
+use App\Models\Admin\Color;
+use App\Models\Admin\Product;
+use App\Models\Admin\Tag;
+use App\Observers\Admin\CategoryObserver;
+use App\Observers\Admin\ColorObserver;
+use App\Observers\Admin\ProductObserver;
+use App\Observers\Admin\TagObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -32,7 +39,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Category::observe(CategoryObserver::class);
+        Product::observe(ProductObserver::class);
+        Tag::observe(TagObserver::class);
+        Color::observe(ColorObserver::class);
     }
 
     /**

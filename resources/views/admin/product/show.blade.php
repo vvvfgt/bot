@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Color</h1>
+                    <h1 class="m-0">Product</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,9 +23,9 @@
                     <div class="card">
                         <div class="card-header d-flex p-3">
                             <div class="mr-3">
-                               <a href="{{ route('color.edit', $color->id) }}" class="btn btn-primary">Edit</a>
+                               <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                             </div>
-                            <form action="{{ route('color.destroy', $color->id) }}" method="post">
+                            <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" class="btn btn-danger" value="Delete">
@@ -37,16 +37,18 @@
                                 <tbody>
                                     <tr>
                                         <td>ID</td>
-                                        <td>{{ $color->id }}</td>
+                                        <td>{{ $product->id }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Name</td>
-                                        <td>{{ $color->title }}</td>
+                                        <td>Наименование</td>
+                                        <td>{{ $product->title }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

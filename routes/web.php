@@ -18,6 +18,7 @@ Route::get('/', \App\Http\Controllers\Admin\MainController::class)->name('shop.m
 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
 Route::resource('tag', \App\Http\Controllers\Admin\TagController::class);
 Route::resource('color', \App\Http\Controllers\Admin\ColorController::class);
+Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
 
 Route::get('/order', function (\App\Service\Telegram $telegram) {
    return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);
