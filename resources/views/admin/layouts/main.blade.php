@@ -24,7 +24,7 @@
     </nav>
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="#" class="brand-link">
+        <a href="{{ route('admin.main') }}" class="brand-link">
             <span class="brand-text font-weight-light">Shop</span>
         </a>
 
@@ -73,6 +73,17 @@
     </aside>
 
     <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{ $caption }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @yield('content')
     </div>
     <footer class="main-footer">

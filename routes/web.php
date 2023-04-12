@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Controllers\Admin\MainController::class)->name('shop.main');
+Route::get('/', \App\Http\Controllers\Admin\MainController::class)->name('admin.main');
 
 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
 Route::resource('tag', \App\Http\Controllers\Admin\TagController::class);

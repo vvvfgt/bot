@@ -23,6 +23,8 @@ use Illuminate\Support\Collection;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
+ * @property ?string $imageUrl
+ *
  * @property Category $category
  *
  * @property Collection|Tag[] $tags
@@ -63,5 +65,10 @@ class Product extends Model
     public function tags(): BelongsToMany
     {
        return $this->belongsToMany(Tag::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+       return url('storage/' . $this->preview_image);
     }
 }

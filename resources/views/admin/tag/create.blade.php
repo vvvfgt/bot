@@ -1,35 +1,24 @@
-@extends('admin.layouts')
+@extends('admin.layouts.main', ['caption' => 'Add tag'])
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Add tag</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Main</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <form action="{{ route('tag.store') }}" method="post">
-                    @csrf
+                <div class="col-md-4">
+                    <div class="card">
+                        <form action="{{ route('tag.store') }}" method="post">
+                            @csrf
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="title" placeholder="Name">
-                    </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="title" placeholder="Name">
+                            </div>
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Add">
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary col-md-4" value="Add">
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
