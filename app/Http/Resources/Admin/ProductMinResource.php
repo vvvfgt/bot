@@ -5,12 +5,10 @@ namespace App\Http\Resources\Admin;
 use App\Models\Admin\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class ProductMinResource extends JsonResource
 {
     public function toArray($request)
     {
-        $products = Product::where('group_id', $this->group_id)->get();
-
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -20,7 +18,7 @@ class ProductResource extends JsonResource
             'count' => $this->count,
             'is_published' => $this->is_published,
             'category' => new CategoryResource($this->category),
-            'group_products' => ProductMinResource::collection($products),
+            'colors' => ColorResource::collection($this->colors)
         ];
     }
 }

@@ -19,6 +19,7 @@ Route::resource('category', \App\Http\Controllers\Admin\CategoryController::clas
 Route::resource('tag', \App\Http\Controllers\Admin\TagController::class);
 Route::resource('color', \App\Http\Controllers\Admin\ColorController::class);
 Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
+Route::resource('group', \App\Http\Controllers\Admin\GroupController::class);
 
 Route::get('/order', function (\App\Service\Telegram $telegram) {
    return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);

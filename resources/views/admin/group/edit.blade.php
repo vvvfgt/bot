@@ -1,4 +1,4 @@
-@extends('admin.layouts.main', ['caption' => 'Edit category'])
+@extends('admin.layouts.main', ['caption' => 'Edit group'])
 
 @section('content')
     <section class="content">
@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <form action="{{ route('category.update', $category->id) }}" method="post">
+                        <form action="{{ route('group.update', $group->id) }}" method="post">
                             @csrf
                             @method('patch')
                             <div class="form-group">
-                                <input type="text" class="form-control" name="title" value="{{ $category->title }}">
+                                <input type="text" class="form-control" name="title" value="{{ $group->title }}">
                             </div>
 
                             <div class="form-group">

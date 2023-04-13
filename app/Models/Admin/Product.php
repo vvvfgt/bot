@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
  * @package App\Models
  * @property int $id
  * @property int $category_id
+ * @property int $group_id
  * @property string $title
  * @property ?string $description
  * @property ?string $preview_image
@@ -26,6 +27,7 @@ use Illuminate\Support\Collection;
  * @property ?string $imageUrl
  *
  * @property Category $category
+ * @property Group $group
  *
  * @property Collection|Tag[] $tags
  * @property Collection|Color[] $colors
@@ -38,6 +40,7 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
+        'group_id',
         'title',
         'description',
         'preview_image',
@@ -51,6 +54,11 @@ class Product extends Model
         'updated_at' => 'datetime',
         'is_published' => 'boolean',
     ];
+
+    public function group(): BelongsTo
+    {
+       return $this->belongsTo(Group::class);
+    }
 
     public function category():BelongsTo
     {
