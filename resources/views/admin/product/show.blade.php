@@ -18,7 +18,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Category</label>
@@ -42,13 +42,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+
+                            <div class="col-md-2">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <h4 class="text-primary">Primary image</h4>
+                                                <div class="form-group">
+                                                    <img class="img-thumbnail" src="{{ $product->imageUrl }}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <h4 class="text-primary">Additional images</h4>
+
+                                                <div class="card-body table-responsive p-0">
+                                                    <table class="table table-hover text-nowrap">
+                                                        <tbody>
+                                                        @foreach($product->productImages as $productImage)
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <img class="img-thumbnail" src="{{ $productImage->imageUrl }}" alt="">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3>Tags</h3>
+                                                    <h4 class="text-primary">Tags</h4>
                                                 </div>
 
                                                 <div class="card-body table-responsive p-0">
@@ -68,13 +112,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+
+                            <div class="col-md-2">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h3>Colors</h3>
+                                                    <h4 class="text-primary">Colors</h4>
                                                 </div>
 
                                                 <div class="card-body table-responsive p-0">

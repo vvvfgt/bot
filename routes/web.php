@@ -21,6 +21,15 @@ Route::resource('color', \App\Http\Controllers\Admin\ColorController::class);
 Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
 Route::resource('group', \App\Http\Controllers\Admin\GroupController::class);
 
+Route::post(
+    '/update_preview_image/{product}',
+    [\App\Http\Controllers\Admin\ProductController::class, 'updatePreviewImage']
+)->name('updatePreviewImage');
+Route::post(
+    '/update_product_images/{product}',
+    [\App\Http\Controllers\Admin\ProductController::class, 'updateProductImages']
+)->name('updateProductImages');
+
 Route::get('/order', function (\App\Service\Telegram $telegram) {
    return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);
 });

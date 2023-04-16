@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Category</th>
                                     <th>Price</th>
                                     <th>Count</th>
                                 </tr>
@@ -24,6 +25,7 @@
                                 <tr>
                                     <td>{{ $product->id }}</td>
                                     <td><a href="{{ route('product.show', $product->id) }}">{{ $product->title }}</a></td>
+                                    <td>{{ $product->category->title }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->count }}</td>
                                 </tr>

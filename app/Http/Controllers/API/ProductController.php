@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\IndexProductResource;
 use App\Http\Resources\Admin\ProductResource;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return ProductResource::collection($products);
+        return IndexProductResource::collection($products);
     }
 
     /**
@@ -36,15 +37,9 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+       return new ProductResource($product);
     }
 
     /**
@@ -55,7 +50,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
 /**
@@ -31,6 +32,7 @@ use Illuminate\Support\Collection;
  *
  * @property Collection|Tag[] $tags
  * @property Collection|Color[] $colors
+ * @property Collection|ProductImage[] $productImages
  *
 */
 
@@ -54,6 +56,11 @@ class Product extends Model
         'updated_at' => 'datetime',
         'is_published' => 'boolean',
     ];
+
+    public function productImages(): HasMany
+    {
+       return $this->hasMany(ProductImage::class);
+    }
 
     public function group(): BelongsTo
     {

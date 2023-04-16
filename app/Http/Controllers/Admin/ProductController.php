@@ -10,6 +10,7 @@ use App\Models\Admin\Color;
 use App\Models\Admin\Product;
 use App\Models\Admin\Tag;
 use App\Service\ProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -64,5 +65,21 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('product.index');
+    }
+
+    public function updatePreviewImage(Request $request, Product $product)
+    {
+       if (!empty($request['preview_image_new'])) {
+           ProductService::updatePreviewImage($request['preview_image_new'], $product);
+       }
+
+        return redirect()->route('product.show', $product);
+    }
+
+    public function updateProductImages(Request $request, Product $product)
+    {
+        ProductService::updateProductImages($request['product_images_new'], $product);
+
+        return redirect()->route('product.show', $product);
     }
 }
