@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Traits\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,7 @@ use Illuminate\Support\Collection;
 class Product extends Model
 {
     use HasFactory;
+    use Filterable;
 
     protected $fillable = [
         'category_id',

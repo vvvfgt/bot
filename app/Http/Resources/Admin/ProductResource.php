@@ -9,8 +9,6 @@ class ProductResource extends JsonResource
 {
     public function toArray($request)
     {
-        $products = Product::where('group_id', $this->group_id)->get();
-
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -20,7 +18,7 @@ class ProductResource extends JsonResource
             'count' => $this->count,
             'is_published' => $this->is_published,
             'category' => new CategoryResource($this->category),
-            'group_products' => ProductMinResource::collection($products),
+            'product_images' => ProductImageResource::collection($this->productImages),
         ];
     }
 }
