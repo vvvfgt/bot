@@ -16,6 +16,8 @@ return new class extends Migration
            $table->tinyInteger('paid')
                ->default(0)
                ->after('total');
+           $table->jsonb('products')
+               ->after('name');
         });
     }
 

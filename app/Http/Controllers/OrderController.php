@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OrderStore;
 use App\Models\Order;
-use App\Service\Telegram;
-use App\Service\TelegramService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,12 +12,11 @@ class OrderController extends Controller
         $order = $order->create([
             'name' => $request->input('name'),
             'email' => $request->input('email2'),
-            'product' => $request->input('product'),
+            'total' => 183,
+            'products' => $request->input('product'),
             'secret_key' => $key,
         ]);
 
-        event(new OrderStore($order));
-
-        return response()->redirectTo('/');
+        return response()->redirectTo('/order');
     }
 }

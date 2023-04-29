@@ -10,13 +10,9 @@ class Telegram
 {
     public const URL = 'https://api.telegram.org/bot';
 
-    public function __construct(
-        private Http $http
-    ) {}
-
     public function sendMessage(int $chatId, string $message)
     {
-        return $this->http::post(
+        return Http::post(
             self::URL . TelegramService::botToken() . '/sendMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
@@ -27,7 +23,7 @@ class Telegram
 
     public function editMessage(int $chatId, string $message, int $message_id)
     {
-        return $this->http::post(
+        return Http::post(
             self::URL . TelegramService::botToken() . '/editMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
@@ -39,7 +35,7 @@ class Telegram
 
     public function sendDocument(int $chatId, string $file, int $reply_id = null)
     {
-         return $this->http::attach('document', Storage::disk('public')->get($file), 'text.txt')
+         return Http::attach('document', Storage::disk('public')->get($file), 'text.txt')
             ->post(
                 self::URL . TelegramService::botToken() . '/sendDocument', [
                     'chat_id' => $chatId,
@@ -49,7 +45,7 @@ class Telegram
 
     public function sendButtons(int $chatId, string $message, $button)
     {
-        return $this->http::post(
+        return Http::post(
             self::URL . TelegramService::botToken() . '/sendMessage', [
                 'chat_id' => $chatId,
                 'text' => $message,
@@ -61,7 +57,7 @@ class Telegram
 
     public function editButtons(int $chatId, string $message, $button, int $messageId)
     {
-        return $this->http::post(
+        return Http::post(
             self::URL . TelegramService::botToken() . '/editMessageText', [
                 'chat_id' => $chatId,
                 'text' => $message,
@@ -78,7 +74,39 @@ class Telegram
             'id' => $order->id,
             'name' => $order->name,
             'email' => $order->email,
-            'product' => $order->product,
         ];
+    }
+
+    public function newOrder(Order $order)
+    {
+        $data = [
+            'id' => $order->id,
+            'name' => $order->name,
+            'email' => $order->email,
+            'total' => $order->total,
+            'products' => $order->orderProducts,
+        ];
+
+        $reply_markup = [
+            'inline_keyboard' =>
+                [
+                    [
+                        [
+                            'text' => 'Принять',
+                            'callback_data' => '1|' . $order->secret_key,
+                        ],
+                        [
+                            'text' => 'Отклонить',
+                            'callback_data' => '0|' . $order->secret_key,
+                        ],
+                    ]
+                ]
+        ];
+
+        $this->sendButtons(
+            TelegramService::chatId(),
+            (string)view('site.messages.new_order', $data),
+            $reply_markup
+        );
     }
 }

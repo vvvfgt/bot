@@ -2,15 +2,16 @@
 
 namespace App\Providers;
 
-use App\Listeners\TelegramSubscriber;
 use App\Models\Admin\Category;
 use App\Models\Admin\Color;
 use App\Models\Admin\Product;
 use App\Models\Admin\Tag;
+use App\Models\Order;
 use App\Observers\Admin\CategoryObserver;
 use App\Observers\Admin\ColorObserver;
 use App\Observers\Admin\ProductObserver;
 use App\Observers\Admin\TagObserver;
+use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,10 +29,6 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
-    protected $subscribe = [
-        TelegramSubscriber::class
-    ];
-
     /**
      * Register any events for your application.
      *
@@ -43,6 +40,7 @@ class EventServiceProvider extends ServiceProvider
         Product::observe(ProductObserver::class);
         Tag::observe(TagObserver::class);
         Color::observe(ColorObserver::class);
+        Order::observe(OrderObserver::class);
     }
 
     /**

@@ -48,7 +48,7 @@
                     <td style="padding: 0 20px;">{{$order->id}}</td>
                     <td style="padding: 0 20px;">{{$order->name}}</td>
                     <td style="padding: 0 20px;">{{$order->email}}</td>
-                    <td style="padding: 0 20px;">{{$order->product}}</td>
+                    <td style="padding: 0 20px;">{{$order->products}}</td>
                 </tr>
             @endforeach
             </tbody>

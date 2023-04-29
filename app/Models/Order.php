@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
  * @package App\Models
  * @property int $id
  * @property string $name
+ * @property array $products
  * @property string $email
  * @property int $total
  * @property bool $public
@@ -31,6 +32,7 @@ class Order extends Model
 
     protected $fillable = [
         'name',
+        'products',
         'email',
         'total',
         'public',
@@ -42,10 +44,11 @@ class Order extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'public' => 'boolean',
-        'paid' => 'boolean,'
+        'paid' => 'boolean',
+        'products' => 'array',
     ];
 
-    public function orderProduct(): HasMany
+    public function orderProducts(): HasMany
     {
         return $this->hasMany(OrderProduct::class);
     }
