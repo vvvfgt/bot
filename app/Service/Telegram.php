@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Telegram
 {
     public const URL = 'https://api.telegram.org/bot';
+    public const SITE = 'https://test.ust-pc.com';
 
     public function sendMessage(int $chatId, string $message)
     {
@@ -84,7 +85,7 @@ class Telegram
             'name' => $order->name,
             'email' => $order->email,
             'total' => $order->total,
-            'products' => $order->orderProducts,
+            'products' => json_decode($order->products, true),
         ];
 
         $reply_markup = [
@@ -92,11 +93,11 @@ class Telegram
                 [
                     [
                         [
-                            'text' => 'Принять',
+                            'text' => __('order.accept'),
                             'callback_data' => '1|' . $order->secret_key,
                         ],
                         [
-                            'text' => 'Отклонить',
+                            'text' => __('order.reject'),
                             'callback_data' => '0|' . $order->secret_key,
                         ],
                     ]
@@ -108,5 +109,19 @@ class Telegram
             (string)view('site.messages.new_order', $data),
             $reply_markup
         );
+    }
+
+    public function hookRegistration(): void
+    {
+       Http::get(
+           self::URL . TelegramService::botToken() . '/setWebhook?url=' . self::SITE . '/webhook'
+       );
+    }
+
+    public function checkWebhook(): void
+    {
+       Http::get(
+           self::URL . TelegramService::botToken() . '/getWebhookInfo'
+       );
     }
 }

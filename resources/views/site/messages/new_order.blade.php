@@ -1,4 +1,11 @@
-Новый заказ <a href="{{env('APP_URL')}}/order?id={{$id}}">№{{$id}}</a>
-<i>Имя: </i> {{$name}}
-<i>Email: </i> {{$email}}
-<i>Total: </i> {{$total}}
+{{__('order.new_order')}}
+<i>{{__('order.name')}}: </i> {{$name}}
+<i>{{__('order.e_mail')}}: </i> {{$email}}
+<i>{{__('order.total')}}: </i> {{$total}}
+--------
+<i>{{__('order.products')}}</i>
+@foreach($products as $product)
+  <i>{{$product['title']}}: </i> {{$product['qty']}} x {{$product['price']}}
+@endforeach
+---------
+

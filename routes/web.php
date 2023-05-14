@@ -20,6 +20,7 @@ Route::resource('tag', \App\Http\Controllers\Admin\TagController::class);
 Route::resource('color', \App\Http\Controllers\Admin\ColorController::class);
 Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
 Route::resource('group', \App\Http\Controllers\Admin\GroupController::class);
+Route::resource('order', \App\Http\Controllers\Admin\OrderController::class);
 
 Route::post(
     '/update_preview_image/{product}',
@@ -30,10 +31,6 @@ Route::post(
     [\App\Http\Controllers\Admin\ProductController::class, 'updateProductImages']
 )->name('updateProductImages');
 
-Route::get('/order', function (\App\Service\Telegram $telegram) {
-   return view('site.order', ['orders' => \App\Models\Order::query()->active()->get()]);
-});
-
-Route::group(['namespace' => 'App\Http\Controllers'], function () {
-    Route::post('/order/store', 'OrderController@store')->name('order.store');
-});
+Route::get('/hook', \App\Http\Controllers\HookRegistrationController::class)->name('hook');
+Route::get('/check_hook', \App\Http\Controllers\CheckHookController::class)->name('checkHook');
+Route::post('/webhook', \App\Http\Controllers\WebHookController::class);

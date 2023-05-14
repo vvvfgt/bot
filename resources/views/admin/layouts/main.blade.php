@@ -68,9 +68,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user-friends"></i>
-                            <p>Users</p>
+                        <a href="{{ route('order.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>Orders</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hook') }}" class="nav-link">
+                            <i class="nav-icon"></i>
+                            <p>Hook Registration</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('checkHook') }}" class="nav-link">
+                            <i class="nav-icon"></i>
+                            <p>Check Webhook</p>
                         </a>
                     </li>
 

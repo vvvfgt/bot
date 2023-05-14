@@ -45,7 +45,6 @@ class Order extends Model
         'updated_at' => 'datetime',
         'public' => 'boolean',
         'paid' => 'boolean',
-        'products' => 'array',
     ];
 
     public function orderProducts(): HasMany
