@@ -14,6 +14,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'group_id' => 'required',
             'title' => 'required|string',
         ];
     }

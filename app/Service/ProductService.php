@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRestore;
 use App\Models\Admin\Product;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 class ProductService
@@ -108,5 +109,37 @@ class ProductService
         }
 
         return Storage::disk('public')->put('/image', $image);
+    }
+
+    public function randomProduct(): Collection
+    {
+        return Product::query()
+            ->get()
+            ->random(6)
+            ->map(function (Product $item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'price' => $item->price,
+                    'description' => $item->description,
+                    'url' => $item->imageUrl,
+                ];
+            });
+    }
+
+    public function categoryProducts(int $categoryId): ?Collection
+    {
+        return Product::query()
+            ->where('category_id', $categoryId)
+            ->get()
+            ->map(function (Product $item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'price' => $item->price,
+                    'description' => $item->description,
+                    'url' => $item->imageUrl,
+                ];
+            });
     }
 }

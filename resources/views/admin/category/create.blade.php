@@ -10,6 +10,15 @@
                             @csrf
 
                             <div class="form-group">
+                                <select name="group_id" class="form-control select2" style="width: 100%;">
+                                    <option selected="selected" disabled>Choose group</option>
+                                    @foreach($groups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <input type="text" class="form-control" name="title" placeholder="Title">
                             </div>
 

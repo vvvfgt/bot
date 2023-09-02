@@ -34,3 +34,5 @@ Route::post(
 Route::get('/hook', \App\Http\Controllers\HookRegistrationController::class)->name('hook');
 Route::get('/check_hook', \App\Http\Controllers\CheckHookController::class)->name('checkHook');
 Route::post('/webhook', \App\Http\Controllers\WebHookController::class);
+
+Route::post('/posts', [\App\Http\Controllers\Post\PostController::class, 'store']);

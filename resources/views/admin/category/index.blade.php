@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Group</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -23,6 +24,7 @@
                                 <tr>
                                     <td>{{ $category->id }}</td>
                                     <td><a href="{{ route('category.show', $category->id) }}">{{ $category->title }}</a></td>
+                                    <td>{{ $category->group->title }}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>

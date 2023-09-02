@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Http\Requests\Admin\Category\UpdateRequest;
 use App\Models\Admin\Category;
+use App\Models\Admin\Group;
 
 class CategoryController extends Controller
 {
@@ -18,12 +19,15 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.category.create');
+        $groups = Group::all();
+
+        return view('admin.category.create', compact('groups'));
     }
 
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+
         Category::query()->firstOrCreate($data);
 
         return redirect()->route('category.index');
