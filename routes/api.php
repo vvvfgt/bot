@@ -30,3 +30,4 @@ Route::get('/products/{product}', ShowController::class);
 Route::get('/categories/{id}', [ShopController::class, 'getCategories']);
 Route::get('/random-products', [ShopController::class, 'getRandomProduct']);
 Route::get('/category-products/{category}', [ShopController::class, 'getCategoryProducts']);
+Route::get('/groups', [ShopController::class, 'getGroups']);

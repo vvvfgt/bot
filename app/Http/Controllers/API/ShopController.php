@@ -15,9 +15,7 @@ class ShopController extends Controller
         private CategoryService $categoryService,
         private ProductService $productService,
         private GroupService $groupService,
-    )
-    {
-    }
+    ) {}
 
     public function getGroups(): JsonResponse
     {
