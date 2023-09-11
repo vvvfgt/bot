@@ -43,6 +43,7 @@ class GroupController extends Controller
     public function update(UpdateRequest $request, Group $group)
     {
         $data = $request->validated();
+
         $group->update($data);
 
         return view('admin.group.show', compact('group'));

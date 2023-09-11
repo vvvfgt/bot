@@ -12,6 +12,12 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" name="title" value="{{ $group->title }}">
                             </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" name="description">
+                                    {{ $group->description }}
+                                </textarea>
+                            </div>
 
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary col-md-4" value="Edit">

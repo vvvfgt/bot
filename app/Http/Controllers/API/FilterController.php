@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use App\Models\Admin\Tag;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FilterController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $categories = Category::all();
         $tags = Tag::all();
@@ -26,6 +28,10 @@ class FilterController extends Controller
             ],
         ];
 
-        return response()->json($result);
+        return response()
+            ->json(
+                $result,
+                Response::HTTP_OK
+            );
     }
 }

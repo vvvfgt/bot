@@ -14,6 +14,7 @@ class GroupFactory
         $groupDto = new GroupDto();
         $groupDto->id = $inputData->id;
         $groupDto->title = $inputData->title;
+        $groupDto->description = $inputData->description;
 
         return $groupDto;
     }

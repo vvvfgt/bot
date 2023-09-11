@@ -13,6 +13,8 @@ use Illuminate\Support\Collection;
  * @package App\Models
  * @property int $id
  * @property string $title
+ * @property ?string $description
+ * @property ?string $icon
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -26,6 +28,8 @@ class Group extends Model
 
     protected $fillable = [
         'title',
+        'description',
+        'icon',
     ];
 
     protected $casts = [

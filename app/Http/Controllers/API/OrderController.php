@@ -8,11 +8,11 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function __invoke(OrderRequest $request)
+    public function __invoke(OrderRequest $request): array
     {
         $data = $request->validated();
 
-        $order = Order::create([
+        $order = Order::query()->create([
             'products' => json_encode($data['products']),
             'name' => $data['name'],
             'email' => $data['email'],

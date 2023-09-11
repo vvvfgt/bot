@@ -8,4 +8,6 @@ class GroupDto
 {
     public int $id;
     public string $title;
+    public ?string $description;
+    public ?string $icon_url;
 }
